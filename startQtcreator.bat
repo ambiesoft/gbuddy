@@ -1,2 +1,2 @@
 cd %~dp0src
-start "" C:\local\Qt\Tools\QtCreator\bin\qtcreator.exe CMakeLists.txt
+start "" C:\local\Qt\Tools\QtCreator\bin\qtcreator.exe gbuddy.pro

@@ -1,4 +1,5 @@
 #include <QClipboard>
+#include <QApplication>
 
 #include "helper.h"
 
@@ -30,3 +31,8 @@ void MainWindow::processClipboardChange()
 
     ui->lineStart->setText(line);
 }
+
+void MainWindow::on_actionOption_triggered()
+{
+}
+

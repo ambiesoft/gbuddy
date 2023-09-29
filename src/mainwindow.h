@@ -20,5 +20,6 @@ private:
 
 private slots:
     void processClipboardChange();
+    void on_actionOption_triggered();
 };
 #endif // MAINWINDOW_H
