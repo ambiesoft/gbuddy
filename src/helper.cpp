@@ -5,7 +5,7 @@
 #include "helper.h"
 
 // static
-bool Helper::GetClipboardFirstLine(QString* line)
+bool GetClipboardFirstLine(QString* line)
 {
     QString text = QApplication::clipboard()->text();
     if(text.isEmpty())
@@ -20,3 +20,4 @@ bool Helper::GetClipboardFirstLine(QString* line)
     }
     return true;
 }
+
