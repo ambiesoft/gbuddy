@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
 #include "optiondialog.h"
 
 QT_BEGIN_NAMESPACE
@@ -21,6 +20,7 @@ private:
     Ui::MainWindow *ui;
 
     OptionDialog* optionDialog_ = nullptr;
+    void startAnalyze();
 
 protected:
     void closeEvent(QCloseEvent *event) override;
@@ -28,5 +28,7 @@ protected:
 private slots:
     void processClipboardChange();
     void on_actionOption_triggered();
+    void on_pbAnalize_clicked();
+    void on_pbGnDesc_clicked();
 };
 #endif // MAINWINDOW_H

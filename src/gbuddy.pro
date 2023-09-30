@@ -15,11 +15,14 @@ SOURCES += \
     ../../lsMisc/stdQt/runguard.cpp \
     ../../lsMisc/stdosd/stdosd.cpp \
     ../../lsMisc/stdQt/stdQt.cpp \
+    analyzer.cpp \
     globals.cpp \
     helper.cpp \
     main.cpp \
     mainwindow.cpp \
-    optiondialog.cpp
+    mainwindow_analize.cpp \
+    optiondialog.cpp \
+    taskgn.cpp
 
 HEADERS += \
     ../../lsMisc/stdQt/ambapp.h \
@@ -29,11 +32,13 @@ HEADERS += \
     ../../lsMisc/stdosd/stdosd_exception.h \
     ../../lsMisc/stdosd/stdosd_literal.h \
     ../../lsMisc/stdQt/stdQt.h \
+    analyzer.h \
     consts.h \
     globals.h \
     helper.h \
     mainwindow.h \
-    optiondialog.h
+    optiondialog.h \
+    taskgn.h
 
 FORMS += \
     mainwindow.ui \

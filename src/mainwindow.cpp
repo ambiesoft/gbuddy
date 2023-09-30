@@ -2,6 +2,7 @@
 #include <QApplication>
 
 #include "optiondialog.h"
+#include "taskgn.h"
 
 #include "helper.h"
 #include "globals.h"
@@ -45,5 +46,26 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     gSettings->sync();
     QMainWindow::closeEvent(event);
+}
+
+
+void MainWindow::on_pbAnalize_clicked()
+{
+    startAnalyze();
+}
+
+
+void MainWindow::on_pbGnDesc_clicked()
+{
+    TaskGn* pTaskGn = new TaskGn(TaskGn::TASK_KIND_DESC,
+                                 optionDialog_->depot_tools(),
+                                 optionDialog_->sourceRoot(),
+                                 optionDialog_->outDir(),
+                                 ui->lineStart->text());
+    pTaskGn->start();
+    pTaskGn->wait();
+
+    ui->txtResult->setText(pTaskGn->getResults());
+
 }
 

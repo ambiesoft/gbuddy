@@ -35,6 +35,16 @@ private slots:
 private:
     Ui::OptionDialog *ui;
 
+public:
+    QString depot_tools() const {
+        return data_.depot_tools_;
+    }
+    QString sourceRoot() const {
+        return data_.sourceRoot_;
+    }
+    QString outDir() const {
+        return data_.output_;
+    }
 };
 
 #endif // OPTIONDIALOG_H
