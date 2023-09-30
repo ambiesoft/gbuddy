@@ -79,6 +79,32 @@
          </rect>
         </property>
        </widget>
+       <widget class="QPushButton" name="pbGnRefs">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>80</y>
+          <width>80</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>gn refs</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pbOpenMD">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>80</y>
+          <width>80</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Open MD</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

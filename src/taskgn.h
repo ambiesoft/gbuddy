@@ -12,6 +12,7 @@ public:
     enum TASK_KIND {
         TASK_KIND_NONE,
         TASK_KIND_DESC,
+        TASK_KIND_REFS,
     };
     struct ProcessResults {
         bool threadRun_ = false;

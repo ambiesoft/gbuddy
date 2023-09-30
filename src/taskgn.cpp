@@ -51,6 +51,9 @@ void TaskGn::run()
     case TASK_KIND_DESC:
         args.append("desc");
         break;
+    case TASK_KIND_REFS:
+        args.append("refs");
+        break;
     default:
         Q_ASSERT(false);
         return;

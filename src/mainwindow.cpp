@@ -1,5 +1,8 @@
 #include <QClipboard>
 #include <QApplication>
+#include <QFileInfo>
+#include <QDir>
+#include <QDesktopServices>
 
 #include "optiondialog.h"
 #include "taskgn.h"
@@ -66,6 +69,49 @@ void MainWindow::on_pbGnDesc_clicked()
     pTaskGn->wait();
 
     ui->txtResult->setText(pTaskGn->getResults());
+}
+
+
+void MainWindow::on_pbGnRefs_clicked()
+{
+    TaskGn* pTaskGn = new TaskGn(TaskGn::TASK_KIND_REFS,
+                                 optionDialog_->depot_tools(),
+                                 optionDialog_->sourceRoot(),
+                                 optionDialog_->outDir(),
+                                 ui->lineStart->text());
+    pTaskGn->start();
+    pTaskGn->wait();
+
+    ui->txtResult->setText(pTaskGn->getResults());
+}
+
+void MainWindow::on_pbOpenMD_clicked()
+{
+    auto findMarkdownFiles = [](const QString& filePath) {
+        QDir directory;
+        if(QFileInfo(filePath).isFile()) {
+            QFileInfo fileInfo(filePath);
+            directory = fileInfo.absoluteDir();
+        } else if(QFileInfo(filePath).isDir()) {
+            directory = filePath;
+        } else {
+            return QStringList();
+        }
+
+        QStringList markdownFiles;
+        QFileInfoList fileList = directory.entryInfoList(QStringList() << "*.md", QDir::Files);
+
+        for (const QFileInfo& file : fileList) {
+            markdownFiles.append(file.absoluteFilePath());
+        }
+
+        return markdownFiles;
+    };
+
+    QStringList mdFiles = findMarkdownFiles(ui->lineStart->text());
+    for(auto&& mdFile : mdFiles) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(mdFile));
+    }
 
 }
 

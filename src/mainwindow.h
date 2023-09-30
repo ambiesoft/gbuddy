@@ -30,5 +30,7 @@ private slots:
     void on_actionOption_triggered();
     void on_pbAnalize_clicked();
     void on_pbGnDesc_clicked();
+    void on_pbGnRefs_clicked();
+    void on_pbOpenMD_clicked();
 };
 #endif // MAINWINDOW_H
