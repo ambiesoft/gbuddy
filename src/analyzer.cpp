@@ -2,18 +2,17 @@
 #include "../../lsMisc/stdosd/stdosd.h"
 #include "../../lsMisc/stdQt/stdQt.h"
 
+#include "optiondialog.h"
+#include "globals.h"
 #include "analyzer.h"
 
 using namespace Ambiesoft::stdosd;
 using namespace AmbiesoftQt;
 
-Analyzer::Analyzer(const QString& text) : text_(text)
+void Analyzer::Initialize(const QString& text)
 {
-    init();
-}
-
-void Analyzer::init()
-{
+    text_ = text;
+    category_ = 0;
     if(text_.isEmpty())
     {
         category_ = 0;
@@ -42,4 +41,17 @@ void Analyzer::init()
         if(stdIsFullPath(QStringToStdString(text_)))
             category_ |= IS_FULLPATH;
     }
+}
+QString Analyzer::getPath() const
+{
+    if(category_ & IS_FULLTARGET_PATH) {
+        Q_ASSERT(text_[0]=='/' && text_[1]=='/');
+        return pathCombine(gpOptionDialog->sourceRoot(), text_.right(text_.length()-2));
+    }
+    if(category_ & IS_FULLPATH)
+        return text_;
+    if(category_ & IS_PATH)
+        return pathCombine(gpOptionDialog->sourceRoot(), text_);
+    return QString();
+
 }

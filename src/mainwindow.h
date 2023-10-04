@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "optiondialog.h"
+#include "analyzer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,7 +20,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    OptionDialog* optionDialog_ = nullptr;
+    Analyzer ana_;
     void startAnalyze();
 
 protected:
@@ -32,5 +33,6 @@ private slots:
     void on_pbGnDesc_clicked();
     void on_pbGnRefs_clicked();
     void on_pbOpenMD_clicked();
+    void on_txtLine_textChanged();
 };
 #endif // MAINWINDOW_H

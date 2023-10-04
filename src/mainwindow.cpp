@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    optionDialog_ = new OptionDialog(this);
 
     connect(QApplication::clipboard(), SIGNAL(dataChanged()),
             this, SLOT(processClipboardChange()));
@@ -37,12 +36,13 @@ void MainWindow::processClipboardChange()
     if(!GetClipboardFirstLine(&line))
         return;
 
-    ui->lineStart->setText(line);
+    // ui->lineStart->setText(line);
+    SetLineTextWithUndoable(ui->txtLine, line);
 }
 
 void MainWindow::on_actionOption_triggered()
 {
-    optionDialog_->exec();
+    gpOptionDialog->exec();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -61,24 +61,25 @@ void MainWindow::on_pbAnalize_clicked()
 void MainWindow::on_pbGnDesc_clicked()
 {
     TaskGn* pTaskGn = new TaskGn(TaskGn::TASK_KIND_DESC,
-                                 optionDialog_->depot_tools(),
-                                 optionDialog_->sourceRoot(),
-                                 optionDialog_->outDir(),
-                                 ui->lineStart->text());
+                                 gpOptionDialog->depot_tools(),
+                                 gpOptionDialog->sourceRoot(),
+                                 gpOptionDialog->outDir(),
+                                 ui->txtLine->toPlainText());
     pTaskGn->start();
     pTaskGn->wait();
 
-    ui->txtResult->setText(pTaskGn->getResults());
+    // ui->txtResult->setText(pTaskGn->getResults());
+    SetLineTextWithUndoable(ui->txtResult, pTaskGn->getResults());
 }
 
 
 void MainWindow::on_pbGnRefs_clicked()
 {
     TaskGn* pTaskGn = new TaskGn(TaskGn::TASK_KIND_REFS,
-                                 optionDialog_->depot_tools(),
-                                 optionDialog_->sourceRoot(),
-                                 optionDialog_->outDir(),
-                                 ui->lineStart->text());
+                                 gpOptionDialog->depot_tools(),
+                                 gpOptionDialog->sourceRoot(),
+                                 gpOptionDialog->outDir(),
+                                 ui->txtLine->toPlainText());
     pTaskGn->start();
     pTaskGn->wait();
 
@@ -108,10 +109,18 @@ void MainWindow::on_pbOpenMD_clicked()
         return markdownFiles;
     };
 
-    QStringList mdFiles = findMarkdownFiles(ui->lineStart->text());
+    QStringList mdFiles = findMarkdownFiles(ana_.getPath());
     for(auto&& mdFile : mdFiles) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(mdFile));
     }
 
+}
+
+
+
+
+void MainWindow::on_txtLine_textChanged()
+{
+    ana_.Initialize(ui->txtLine->toPlainText());
 }
 

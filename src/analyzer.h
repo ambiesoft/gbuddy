@@ -16,9 +16,10 @@ class Analyzer
         IS_ALL_ASCII = 1 << 6,
     };
     int category_ = 0;
-    void init();
 public:
-    Analyzer(const QString& text);
+    Analyzer(){}
+    void Initialize(const QString& text);
+    QString getPath() const;
 };
 
 #endif // ANALYZER_H

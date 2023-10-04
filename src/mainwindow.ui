@@ -33,16 +33,6 @@
        <attribute name="title">
         <string>Main</string>
        </attribute>
-       <widget class="QLineEdit" name="lineStart">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>30</y>
-          <width>561</width>
-          <height>24</height>
-         </rect>
-        </property>
-       </widget>
        <widget class="QPushButton" name="pbAnalize">
         <property name="geometry">
          <rect>
@@ -103,6 +93,19 @@
         </property>
         <property name="text">
          <string>Open MD</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="txtLine">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>581</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="tabChangesFocus">
+         <bool>true</bool>
         </property>
        </widget>
       </widget>

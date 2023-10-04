@@ -1,6 +1,7 @@
 #include <QString>
 #include <QApplication>
 #include <QClipboard>
+#include <QLineEdit>
 
 #include "helper.h"
 
@@ -21,3 +22,13 @@ bool GetClipboardFirstLine(QString* line)
     return true;
 }
 
+void SetLineTextWithUndoable(QLineEdit* pLE, const QString& text)
+{
+    pLE->selectAll();
+    pLE->insert(text);
+}
+void SetLineTextWithUndoable(QTextEdit* pTE, const QString& text)
+{
+    pTE->selectAll();
+    pTE->insertPlainText(text);
+}

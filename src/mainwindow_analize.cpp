@@ -11,6 +11,6 @@
 
 void MainWindow::startAnalyze()
 {
-    Analyzer ana( ui->lineStart->text());
+    ana_.Initialize(ui->txtLine->toPlainText());
 }
 

@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "consts.h"
 #include "globals.h"
+#include "optiondialog.h"
 
 using namespace AmbiesoftQt;
 using namespace Consts;
@@ -25,6 +26,8 @@ int main(int argc, char *argv[])
     gSettings = settings.get();
     Q_ASSERT(gSettings);
 
+    OptionDialog optionDialog;
+    gpOptionDialog = &optionDialog;
     MainWindow w;
     w.show();
     return app.exec();
